@@ -1,0 +1,161 @@
+﻿@model Entities.Concrete.User 
+
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+
+<style>
+    #map {
+        height: 750px;
+        width: 1200px;
+        margin-left: 100px;
+    }
+
+    .button {
+        display: inline-block;
+        padding: 15px 25px;
+        font-size: 24px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 9px #999;
+        margin-left: 40%;
+        margin-top: 50%;
+    }
+
+        .button:hover {
+            background-color: #3e8e41
+        }
+
+        .button:active {
+            background-color: #3e8e41;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+</style>
+
+<div class="row col-lg-12 col-md-12 col-xs-12">
+    <div style="margin-left:10px" id="map"></div>
+
+
+    <div>
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+        {
+            <div style="margin-left:160px">
+                İstek :
+                <br />
+                Köpek @Html.RadioButton("choice", "Köpek")
+                <img src="~/Image/pet.png" />
+                <br />
+                Kedi @Html.RadioButton("choice", "Kedi")
+                <img src="~/Image/cat.png" />
+                <br />
+                Yaş Mama @Html.RadioButton("choice", "Yaş Mama")
+                <img src="~/Image/blood-drop.png" />
+                <br />
+                <br />
+                <button class="button">Onayla</button>
+            </div>
+            <div style="float:right; width:50px"><br /> </div>
+            <input id="lat" type="hidden" name="userLatitude" />
+
+            <div style="float:right; width:50px"> </div>
+            <input id="lon" type="hidden" name="userLongtitude" />
+        }
+        <br />
+        <br />
+        <div style="margin-left:160px">
+            @Html.Action("PartialModal", "Home")
+        </div>
+
+
+
+    </div>
+</div>
+<script>
+    //User Location
+    $(function () {
+        navigator.geolocation.getCurrentPosition(showPosition, positionError);
+
+        function showPosition(position) {
+            var coordinates = position.coords;
+            $('#lat').val(coordinates.latitude);
+            $('#lon').val(coordinates.longitude);
+            return false;
+        }
+        function positionError(position) {
+            alert("Ooops! Hata: " + position.code);
+            return false;
+        }
+    });
+
+    //Map
+        let map;
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: 37.065842, lng: 37.376080 },
+                zoom: 13,
+            });
+           
+
+
+            $.get("@Url.Action("GetAllLocation", "Home")", function (data, status) {
+                debugger;
+            var marker = [];
+            var contentString = [];
+            var infoWindow = [];
+            for (var i = 0; i < data.length; i++) {
+                marker[i] = new google.maps.Marker({
+                    position: { lat: data[i].Lat, lng: data[i].Long },
+                    map: map,
+
+                       });
+                 contentString[i] = '<div id="content">' +
+                    '<div id="siteNotice">' +
+                    '</div>' +
+                    '<h1 id="firstHeading" class="firstHeading">'+ data[i].explain +'</h1>' +
+                    '<div id="bodyContent">' +
+                     '<p><b>' + data[i].explain
+                 infoWindow[i] = new google.maps.InfoWindow({
+                     content: contentString[i]
+                 });
+                var mrk = marker[i];
+                google.maps.event.addListener(marker[i], 'click', (function (mrk, i) {
+                    return function () {
+                        infoWindow[i].open(map, marker[i]);
+                    }
+                })(marker[i], i));
+
+                //marker[i].addListener('click', function () {
+                //    infoWindow[i].open(map, marker[i]);
+                //});
+                //marker[i].addListener('mouseout', function () {
+                //    infoWindow[i].close();
+                //});
+            }
+
+        })
+        }
+        //function addMarker(props) {
+        //    var marker = new google.maps.Marker({
+        //        position: props.coords,
+        //        map: map,
+        //        icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+        //    });
+        //}
+
+</script>
+<script async
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC85wbqZr_BN5ceL_KDZpqY8rbP4jIKP5E&callback=initMap">
+</script>
+
+

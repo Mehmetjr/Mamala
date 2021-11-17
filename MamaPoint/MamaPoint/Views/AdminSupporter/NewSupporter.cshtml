@@ -1,0 +1,23 @@
+﻿@model Entities.Concrete.Supporter
+@{
+    ViewBag.Title = "NewSupporter";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Yeni Destekçi</h2>
+<br />
+@using (Html.BeginForm("NewSupporter", "AdminSupporter", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <form class="form-group" method="post">
+        @Html.Label("Destekçi")
+        @Html.TextBoxFor(x => x.supporterName, new { @class = "form-control" })
+
+        <br />
+        @Html.Label("Destekçi Görsel")
+        <input type="file" name="SupporterImage" required />
+        <br />
+
+        <button class="btn btn-primary">Sponsor Ekle</button>
+    </form>
+   
+}

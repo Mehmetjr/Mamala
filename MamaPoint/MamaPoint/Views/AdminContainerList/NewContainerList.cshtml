@@ -1,0 +1,31 @@
+﻿@model Entities.Concrete.FoodContainer
+
+@{
+    ViewBag.Title = "NewContainerList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Mama Kabı Ekle</h2>
+<br />
+@using (Html.BeginForm("NewContainerList", "AdminContainerList", FormMethod.Post))
+{
+    <form class="form-group" method="post">
+        
+        @Html.Label("Pin")
+        @Html.TextBoxFor(x => x.pin, new { @class = "form-control" })
+        <br />
+        @Html.Label("Time")
+        @Html.TextBoxFor(x => x.time, new { @class = "form-control" })
+       <br />
+        @Html.Label("Latitude")
+        @Html.TextBoxFor(x => x.Lat, new { @class = "form-control" })
+        <br />
+        @Html.Label("Longtitude")
+        @Html.TextBoxFor(x => x.Long, new { @class = "form-control" })
+        <br />
+        @Html.Label("Explain")
+        @Html.TextAreaFor(x => x.explain, 10, 1, new { @class = "form-control" })
+        <br />
+        <button class="btn btn-primary">Kap Ekle</button>
+    </form>
+}

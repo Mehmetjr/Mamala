@@ -1,0 +1,27 @@
+﻿@model Entities.Concrete.User
+@{
+    ViewBag.Title = "UpdateUserList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Kullanıcı Güncelle</h2>
+<br />
+@using (Html.BeginForm("UpdateUserList", "AdminUserList", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.userId, new { @class = "form-control" })
+    @Html.HiddenFor(x => x.password, new { @class = "form-control" })
+    @Html.Label("Mail")
+    @Html.TextBoxFor(x => x.userMail, new { @class = "form-control" })
+    <br />
+    @Html.Label("İsim")
+    @Html.TextBoxFor(x => x.userName, new { @class = "form-control" })
+    <br />
+    @Html.Label("Soyad")
+    @Html.TextBoxFor(x => x.userSurname, new { @class = "form-control" })
+    <br />
+    @Html.Label("Puan")
+    @Html.TextBoxFor(x => x.point, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-primary">Kullanıcı Güncelle</button>
+
+}

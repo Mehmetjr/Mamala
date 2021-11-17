@@ -1,0 +1,39 @@
+﻿@using Entities.Concrete
+@model List<User>
+@{
+    ViewBag.Title = "UserList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    tr:nth-child(even) {
+        background-color: #D6EEEE;
+    }
+</style>
+<h2>Kullanıcı Listesi</h2>
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Mail</th>
+        <th>Password</th>
+        <th>Point</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+    </tr>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <td>@item.userId</td>
+            <td>@item.userName</td>
+            <td>@item.userSurname</td>
+            <td>@item.userMail</td>
+            <td>@item.password</td>
+            <td>@item.point</td>
+            <td><a href="/AdminUserList/DeleteUser/@item.userId " class="btn btn-danger">Sil</a></td>
+            <td><a href="/AdminUserList/UpdateUserList/@item.userId" class="btn btn-warning">Güncelle</a></td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Mama Point</title>
+    <link href="~/Content/adminLayout.css" rel="stylesheet" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+    <style>
+        .modalSSS {
+            display: none; /* Varsayılan olarak gizlidir */
+            position: fixed; /* Yerinde kal */
+            z-index: 1; /* Üstte */
+            left: 0;
+            top: 0;
+            width: 100%; /* Ful Genişlik */
+            height: 100%; /* Ful Yükseklik */
+            overflow: auto; /* Gerekirse kaydırmayı etkinleştir */
+            background-color: rgb(0,0,0); /* Yedek renk */
+            background-color: rgba(0,0,0,0.4); /* Siyah w / opaklık */
+        }
+
+        /* İçerik / Kutu */
+        .modal-contentSSS {
+            background-color: #fefefe;
+            margin: 15% auto; /* % 15 üstten ve ortalanmış */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%; /* Ekran boyutuna bağlı olarak daha fazla veya daha az olabilir */
+        }
+
+        /* Kapat Düğmesi */
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+            .close:hover,
+            .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+            }
+    </style>
+    <div id="wrapper" class="animate">
+        <nav class="navbar header-top fixed-top navbar-expand-lg  navbar-dark bg-dark">
+            <span class="navbar-toggler-icon leftmenutrigger"></span>
+            <a class="navbar-brand" href="/Home/Index">MAMA POİNT</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav animate side-nav">
+                  
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/Index">
+                            Anasayfa
+                            <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/UserScoreList/ScoreList">Skor Tablosu</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/UserContact/Contact">Mesajlar</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/UserSupporter/Supporter">Destekçilerimiz</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a id="myBtn" class="nav-link" href="#">SSS</a>
+                        <div id="myModal" class="modalSSS">
+                            <div class="modal-contentSSS">
+                                <span class="close" style="margin-left:800px">&times;</span>
+                                <p><b>Sık Sorulan Sorular</b></p>
+                                <p>
+                                    Uygulamayı nasıl kullanırım?
+                                    Kimsesiz dostlarımız için yerleştirdiğimiz kaplara mamaları döktükten sonra
+                                    kabın bulunduğu yerdeki pini girerek mama dökme işlemini bitirdiğinizi
+                                    bildirmelisiniz. Böylece daha önceden mama bırakılan yerler harita üzerinden görüntülenecek ve en
+                                    yüksek verimle küçük dostlarımız yemeklerine kavuşacak
+                                    <br />
+                                </p>
+                                <p><b>Haritadaki mama kaplarının yerini gösteren işaretlerin renkleri ne anlama geliyor?</b></p>
+                                <p>
+                                    Kırmızı işaretler 3 gün veya daha uzun süre önce, sarı işaretler 1 ila 3 gün arasında,
+                                    yeşiller ise 1 günden kısa süre içerisinde mamalandığını gösteriyor. Sizlerden ricamız işaretleri dikkate
+                                    alarak en çok mama ihtiyacının olduğu MamaPointleri mamalamanız
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/UserProfile/UProfile">Profil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/UserGiriş/Giriş">Çıkış</a>
+                    </li>
+                </ul>
+
+
+            </div>
+        </nav>
+
+        <div>@RenderBody()</div>
+
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('.leftmenutrigger').on('click', function (e) {
+                $('.side-nav').toggleClass("open");
+                e.preventDefault();
+            });
+        });
+
+        var modal = document.getElementById('myModal');
+
+        // Kipi açan düğmeyi al
+        var btn = document.getElementById("myBtn");
+
+        // Kipi kapatan <span> öğesini edinin
+        var span = document.getElementsByClassName("close")[0];
+
+        // Kullanıcı düğmeyi tıklattığında
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        // Kullanıcı <span> (x) düğmesini tıkladığında, popup
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // Kullanıcı modelden başka herhangi bir yeri tıklattıysa, onu kapatın.
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>

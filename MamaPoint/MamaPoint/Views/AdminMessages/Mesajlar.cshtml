@@ -1,0 +1,37 @@
+﻿@using Entities.Concrete
+@model List<Contact>
+@{
+    ViewBag.Title = "Mesajlar";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    tr:nth-child(even) {
+        background-color: #D6EEEE;
+    }
+</style>
+<h2>Mesajlar</h2>
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>userıd</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Subject</th>
+        <th>Message</th>
+        <th>Sil</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.contactId</td>
+            <td>@item.userId</td>
+            <td>@item.User.userName</td>
+            <td>@item.User.userSurname</td>
+            <td>@item.subject</td>
+            <td>@item.message</td>
+            <td><a href="/AdminMessages/DeleteMesajlar/@item.contactId" class="btn btn-danger">Sil</a></td>
+        </tr>
+    }
+
+</table>

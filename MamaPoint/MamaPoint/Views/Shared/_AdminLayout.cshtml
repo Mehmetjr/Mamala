@@ -1,0 +1,54 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Admin Yönetim Panel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+    <link href="~/Content/adminLayout.css" rel="stylesheet" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+</head>
+<body>
+
+    <div class="w3-sidebar w3-light-grey w3-bar-block" style="width:15%">
+        <h3 class="w3-bar-item">Menu</h3>
+
+        <a href="/Admin/Index/" class="w3-bar-item w3-button">AnaSayfa</a>
+        <a href="/AdminList/AdminList/" class="w3-bar-item w3-button">Admin Listesi</a>
+        <a href="/AdminContainerList/ContainerList/" class="w3-bar-item w3-button">Mama Kabı Listesi</a>
+        <a href="/AdminUserList/UserList/" class="w3-bar-item w3-button">Kullanıcı Listesi</a>
+        <a href="/AdminRequest/Request/" class="w3-bar-item w3-button">İstekler</a>
+        <a href="/AdminMessages/Mesajlar/" class="w3-bar-item w3-button">Mesajlar</a>
+        <a href="/AdminSupporter/Supporter" class="w3-bar-item w3-button">Destekçi Listesi</a>
+        <a href="/AdminProfile/AProfile" class="w3-bar-item w3-button">Profil</a>
+        <a href="/AdminGiriş/Logout" class="btn btn-default">Logout</a>
+    </div>
+    <div style="margin-left:15%">
+
+        <div class="w3-container w3-teal">
+            <h3>Admin Yönetim Paneli</h3>
+        </div>
+
+        <div class="w3-container">
+            @RenderBody()
+        </div>
+
+    </div>
+
+</body>
+</html>

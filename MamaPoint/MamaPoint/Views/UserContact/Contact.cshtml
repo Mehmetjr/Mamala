@@ -1,0 +1,41 @@
+﻿@model Entities.Concrete.Contact
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="~/Content/UserContactStyle.css" rel="stylesheet" />
+
+<div class="container contact-form">
+    
+    <div class="contact-image">
+        <img src="~/Image/mamapoint.jpg" />
+    </div>
+    @using (Html.BeginForm("Contact", "UserContact", FormMethod.Post))
+    {
+        <form method="post">
+            <h3>Mesaj Gönder</h3>
+            <div class="row">
+                <div class="col-md-6" style="margin-left:auto;margin-right:auto;">
+                    <div class="form-group">
+                        @Html.HiddenFor(x => x.contactId, new { @class = "form-control" })
+                        <br />
+                        @Html.Label("Konu")
+                        @Html.TextBoxFor(x => x.subject, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.subject)
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Mesaj")
+                        @Html.TextAreaFor(x=>x.message ,new { @class = "form-control" })
+                        @Html.ValidationMessageFor(x => x.message)
+                    </div>
+                    <div class="form-group">
+                        <button class="btnContact">Mesaj Gönder</button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    }
+    </div>

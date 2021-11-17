@@ -1,0 +1,43 @@
+﻿@using Entities.Concrete
+@model List<Admin>
+@{
+    ViewBag.Title = "AdminList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    tr:nth-child(even) {
+        background-color: #D6EEEE;
+    }
+</style>
+<h2>Admin Listesi</h2>
+<br />
+@using (Html.BeginForm("Giriş", "AdminGiriş", FormMethod.Post))
+{
+    <table class="table table-bordered">
+        <tr>
+            <th>ID</th>
+            <th>Mail</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Password</th>
+            <th>Sil</th>
+            <th>Güncelle</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.adminId</td>
+                <td>@item.adminMail</td>
+                <td>@item.adminName</td>
+                <td>@item.adminSurname</td>
+                <td>@item.adminPassword</td>
+                <td><a href="/AdminList/DeleteAdmin/@item.adminId" class="btn btn-danger">Sil</a></td>
+                <td><a href="/AdminList/UpdateAdmin/@item.adminId" class="btn btn-warning">Güncelle</a></td>
+            </tr>
+        }
+
+
+    </table>
+    <a href="/AdminList/NewAdminList" class="btn btn-primary">Yeni Admin Ekle</a>
+}

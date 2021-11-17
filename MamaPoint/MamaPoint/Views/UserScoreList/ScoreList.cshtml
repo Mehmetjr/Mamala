@@ -1,0 +1,35 @@
+﻿@using Entities.Concrete
+@model List<User>
+@{
+    ViewBag.Title = "ScoreList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    tr:nth-child(even) {
+        background-color: #D6EEEE;
+    }
+</style>
+<h2>ScoreList</h2>
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Score</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>@item.userId</td>
+    <td>@item.userName</td>
+    <td>@item.point</td>
+</tr>
+
+    }
+    
+
+
+</table>
+<br />
+<br />
+@Html.Action("UserScore","UserScoreList")

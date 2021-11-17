@@ -1,0 +1,29 @@
+﻿@model Entities.Concrete.FoodContainer
+@{
+    ViewBag.Title = "UpdateContainerList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Mama Kabı Güncelle</h2>
+<br />
+@using (Html.BeginForm("UpdateContainerList", "AdminContainerList", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.containerId, new { @class = "form-control" })
+    @Html.Label("Pin")
+    @Html.TextBoxFor(x => x.pin, new { @class = "form-control" })
+    <br />
+    @Html.Label("Time")
+    @Html.TextBoxFor(x => x.time, new { @class = "form-control" })
+    <br />
+    @Html.Label("Latitude")
+    @Html.TextBoxFor(x => x.Lat, new { @class = "form-control" })
+    <br />
+    @Html.Label("Longtitude")
+    @Html.TextBoxFor(x => x.Long, new { @class = "form-control" })
+    <br />
+    @Html.Label("Explain")
+    @Html.TextAreaFor(x => x.explain, 15, 1, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-primary">Kap Güncelle</button>
+
+}

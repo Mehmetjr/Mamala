@@ -1,0 +1,37 @@
+﻿@using Entities.Concrete
+@model List<Request>
+@{
+    ViewBag.Title = "Request";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    tr:nth-child(even) {
+        background-color: #D6EEEE;
+    }
+</style>
+<h2>Request</h2>
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Latitude</th>
+        <th>Longtitude</th>
+        <th>UserName</th>
+        <th>UserSurname</th>
+        <th>Mama Kabı</th>
+        <th>Sil</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>@item.requestId</td>
+    <td>@item.userLatitude</td>
+    <td>@item.userLongtitude</td>
+    <td>@item.User.userName</td>
+    <td>@item.User.userSurname</td>
+    <td>@item.request</td>
+    <td><a href="/AdminRequest/DeleteRequest/@item.requestId" class="btn btn-danger">Sil</a></td>
+</tr>
+    }
+
+</table>

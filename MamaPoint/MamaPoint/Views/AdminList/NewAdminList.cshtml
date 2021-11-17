@@ -1,0 +1,33 @@
+﻿@model Entities.Concrete.Admin
+@{
+    ViewBag.Title = "NewAdminList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<h2>Admin Ekle</h2>
+<br />
+@using (Html.BeginForm("NewAdminList", "AdminList", FormMethod.Post))
+{
+<form class="form-group" method="post">
+    @Html.Label("İsim")
+    @Html.TextBoxFor(x =>x.adminName, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.adminName)
+    <br />
+    @Html.Label("Soyisim")
+    @Html.TextBoxFor(x => x.adminSurname, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.adminSurname)
+    <br />
+    @Html.Label("Mail")
+    @Html.TextBoxFor(x => x.adminMail, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.adminMail)
+    <br />
+    @Html.Label("Şifre")
+    @Html.TextBoxFor(x => x.adminPassword, new { @class = "form-control" })
+    @Html.ValidationMessageFor(x => x.adminPassword)
+    <br />
+    <button class="btn btn-primary">Admin Ekle</button>
+</form>
+
+}
+

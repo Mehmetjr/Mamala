@@ -1,0 +1,53 @@
+﻿@model Entities.Concrete.User
+
+<style>
+    .button {
+        display: inline-block;
+        padding: 15px 25px;
+        font-size: 24px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 9px #999;
+    }
+
+        .button:hover {
+            background-color: #3e8e41
+        }
+
+        .button:active {
+            background-color: #3e8e41;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        }
+</style>
+<div class="container">
+
+
+    <button class="button" data-toggle="modal" data-target="#myModal1">Mamala</button>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal1" role="dialog">
+        <div class="modal-dialog">
+            @using (Html.BeginForm("PartialModal", "Home", FormMethod.Post))
+            {<!-- Modal content-->
+               
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <h3>Pin Giriniz : </h3>
+                        <input type="text" name="Pin" style="width:350px" />
+                        <input type="submit" name="Gönder" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+</div>

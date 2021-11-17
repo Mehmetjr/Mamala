@@ -1,0 +1,20 @@
+﻿@model Entities.Concrete.Supporter
+@{
+    ViewBag.Title = "UpdateSupporter";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Destekçi Güncelle</h2>
+<br />
+@using (Html.BeginForm("UpdateSupporter", "AdminSupporter", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.supporterId, new { @class = "form-control" })
+    @Html.Label("Resim")
+    @Html.TextBoxFor(x => x.SupporterImage, new { @class = "form-control" })
+    <br />
+    @Html.Label("Destekçi Adı")
+    @Html.TextBoxFor(x => x.supporterName, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-primary">Destekçi Güncelle</button>
+
+}

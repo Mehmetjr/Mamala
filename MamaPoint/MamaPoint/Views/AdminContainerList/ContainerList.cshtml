@@ -1,0 +1,40 @@
+﻿@using Entities.Concrete
+@model List<FoodContainer>
+@{
+    ViewBag.Title = "ContainerList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    tr:nth-child(even) {
+        background-color: #D6EEEE;
+    }
+</style>
+<h2>Mama Kabı Listesi</h2>
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Latitude</th>
+        <th>Longtitude</th>
+        <th>Pin</th>
+        <th>Time</th>
+        <th>Explain</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.containerId</td>
+            <td>@item.Lat</td>
+            <td>@item.Long</td>
+            <td>@item.pin</td>
+            <td>@item.time</td>
+            <td>@item.explain</td>
+            <td><a href="/AdminContainerList/DeleteContainerList/@item.containerId" class="btn btn-danger">Sil</a></td>
+            <td><a href="/AdminContainerList/UpdateContainerList/@item.containerId" class="btn btn-warning">Güncelle</a></td>
+        </tr>
+    }
+
+</table>
+<a href="/AdminContainerList/NewContainerList" class="btn btn-primary">Mama Kabı Ekle</a>
